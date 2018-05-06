@@ -40,3 +40,39 @@ networks:
     external:
       name: nginx_default
 ```
+
+- Autre docker-compose.yml
+```yml
+version: '2'
+
+services:
+
+  db:
+    image: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=mypass
+    volumes:
+      - db-data:/var/log/mysql
+  wp:
+    image: wordpress
+    environment:
+      - WORDPRESS_DB_HOST=db
+      - WORDPRESS_DB_PASSWORD=mypass
+    volumes:
+      - wp-data:/var/www/html
+    ports:
+      - "1235:80"
+    environment:
+      VIRTUAL_HOST: sub.domain.com
+      VIRTUAL_PORT: 1235
+volumes:
+   db-data:
+      driver: local
+   wp-data:
+      driver: local
+
+networks:
+  default:
+    external:
+      name: nginx_default
+```
