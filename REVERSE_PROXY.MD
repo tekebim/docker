@@ -46,7 +46,32 @@ networks:
       name: nginx_default
 ```
 
+Deux fichiers
+
+ - docker-compose.yml > nginx-proxy
+ 
+ ```yml
+version: '2'
+
+services:
+
+  nginx-proxy:
+    restart: always
+    image: jwilder/nginx-proxy
+    container_name: nginx-proxy
+    ports:
+      - "80:80"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      
+networks:
+  default:
+    external:
+      name: nginx_default
+```
+
 - Autre docker-compose.yml
+
 ```yml
 version: '2'
 
