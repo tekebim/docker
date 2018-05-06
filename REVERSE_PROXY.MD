@@ -6,6 +6,11 @@ Container avec virtual host
     
     docker run -d -e VIRTUAL_HOST=sub.domaine.com nom_mon_image
 
+
+# Create un network
+
+    docker network create nginx_default
+
 # Docker-compose
 
 Test 1 :
